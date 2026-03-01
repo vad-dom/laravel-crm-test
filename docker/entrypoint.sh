@@ -38,6 +38,12 @@ mkdir -p storage/framework/{cache,sessions,views} bootstrap/cache
 chown -R www-data:www-data storage bootstrap/cache
 chmod -R 775 storage bootstrap/cache
 
+# Создаем storage link (если отсутствует)
+if [ ! -L public/storage ]; then
+  echo "🔗 Создаю storage:link..."
+  php artisan storage:link || true
+fi
+
 echo "🛠️ Выполняю миграции..."
 php artisan migrate --force || true
 

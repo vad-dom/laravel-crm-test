@@ -43,4 +43,12 @@ class Ticket extends Model implements HasMedia
     {
         return $this->belongsTo(Customer::class);
     }
+
+    /**
+     * @return void
+     */
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('attachments');
+    }
 }
