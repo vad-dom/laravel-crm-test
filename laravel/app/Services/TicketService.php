@@ -10,6 +10,8 @@ use Illuminate\Validation\ValidationException;
 
 readonly class TicketService
 {
+    private const DAILY_LIMIT_MESSAGE = 'Можно отправлять не более одной заявки в сутки';
+
     public function __construct(private TicketMediaService $mediaService)
     {
     }
@@ -26,6 +28,8 @@ readonly class TicketService
                 email: $data['email'],
                 phoneE164: $data['phone_e164'],
             );
+
+            $this->ensureDailyLimit($customer);
 
             $ticket = Ticket::query()->create([
                 'customer_id' => $customer->id,
@@ -89,5 +93,25 @@ readonly class TicketService
             'email' => $email,
             'phone_e164' => $phoneE164,
         ]);
+    }
+
+    /**
+     * @param Customer $customer
+     * @return void
+     * @throws ValidationException
+     */
+    private function ensureDailyLimit(Customer $customer): void
+    {
+        $sentToday = Ticket::query()
+            ->where('customer_id', $customer->id)
+            ->where('created_at', '>=', now()->startOfDay())
+            ->exists();
+
+        if ($sentToday) {
+            throw ValidationException::withMessages([
+                'email' => [self::DAILY_LIMIT_MESSAGE],
+                'phone_e164' => [self::DAILY_LIMIT_MESSAGE],
+            ]);
+        }
     }
 }
