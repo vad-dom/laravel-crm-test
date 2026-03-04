@@ -58,11 +58,6 @@
                                         @endforeach
                                     </select>
 
-                                    @error('status')
-                                        <div class="mt-1 text-sm text-red-600">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
                                 </div>
 
                                 <button type="submit"
@@ -70,6 +65,11 @@
                                     Сохранить
                                 </button>
                             </form>
+                            @error('status')
+                                <div class="mt-1 text-sm text-red-600">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <div class="space-y-3">

@@ -3,13 +3,12 @@
 namespace App\Services;
 
 use App\Models\Ticket;
-use Carbon\Carbon;
 
 class TicketStatisticsService
 {
     public function get(): array
     {
-        $now = Carbon::now();
+        $now = now();
 
         return [
             'day' => Ticket::query()->createdSince($now->copy()->subDay())->count(),

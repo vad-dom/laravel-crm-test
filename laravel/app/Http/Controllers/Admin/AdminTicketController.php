@@ -6,6 +6,7 @@ use App\Enums\TicketStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UpdateTicketStatusRequest;
 use App\Models\Ticket;
+use App\Services\Admin\TicketStatusService;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -50,14 +51,16 @@ class AdminTicketController extends Controller
     /**
      * @param UpdateTicketStatusRequest $request
      * @param Ticket $ticket
+     * @param TicketStatusService $service
      * @return RedirectResponse
      */
-    public function updateStatus(UpdateTicketStatusRequest $request, Ticket $ticket): RedirectResponse
-    {
-        $ticket->status = $request->enum('status', TicketStatus::class);
-        $ticket->answered_at = now();
-        $ticket->save();
-
+    public function updateStatus(
+        UpdateTicketStatusRequest $request,
+        Ticket $ticket,
+        TicketStatusService $service
+    ): RedirectResponse {
+        $status = $request->enum('status', TicketStatus::class);
+        $service->update($ticket, $status);
         return back()->with('status', 'Статус обновлен');
     }
 }
