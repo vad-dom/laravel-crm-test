@@ -1,0 +1,185 @@
+openapi: 3.0.3
+
+info:
+  title: CRM API
+  version: 1.0.0
+  description: API для CRM
+
+servers:
+  - url: http://localhost:8080
+
+tags:
+  - name: Tickets
+    description: Заявки
+
+paths:
+  /api/tickets:
+    post:
+      tags:
+        - Tickets
+      summary: Создание заявки
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TicketCreateRequest'
+            encoding:
+              attachments[]:
+                style: form
+                explode: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+
+  /api/tickets/statistics:
+    get:
+      tags:
+        - Tickets
+      summary: Статистика по заявкам
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketStatisticsResponse'
+
+components:
+  schemas:
+    TicketCreateRequest:
+      type: object
+      required: [name, email, phone_e164, subject, message]
+      properties:
+        name:
+          type: string
+          example: "Порфирий Иванов"
+        email:
+          type: string
+          format: email
+          example: "ivan@por.com"
+        phone_e164:
+          type: string
+          example: "+15551234123"
+        subject:
+          type: string
+          example: "Вопрос по доставке"
+        message:
+          type: string
+          example: "Здравствуйте! Подскажите, пожалуйста..."
+        attachments[]:
+          type: array
+          nullable: true
+          minItems: 0
+          items:
+            type: string
+            format: binary
+
+    TicketResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Ticket'
+
+    Ticket:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        status:
+          type: string
+          example: "new"
+        answered_at:
+          type: string
+          nullable: true
+          example: "2026-03-04T11:15:22+00:00"
+        created_at:
+          type: string
+          example: "2026-03-04T10:19:10+00:00"
+        customer:
+          $ref: '#/components/schemas/Customer'
+        subject:
+          type: string
+          example: "Пропала собака"
+        message:
+          type: string
+          example: "Никак не могу найти собаку"
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+
+    Customer:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "Константин Кучаев"
+        email:
+          type: string
+          example: "konst@kuch.com"
+        phone_e164:
+          type: string
+          example: "+15551234123"
+
+    Attachment:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "file.png"
+        mime_type:
+          type: string
+          example: "image/png"
+        size:
+          type: integer
+          example: 123456
+        url:
+          type: string
+          example: "http://localhost/storage/1/file.png"
+
+    TicketStatisticsResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            day:
+              type: integer
+              example: 2
+            week:
+              type: integer
+              example: 29
+            month:
+              type: integer
+              example: 29
+
+    ValidationError:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "The given data was invalid."
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string

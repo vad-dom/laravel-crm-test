@@ -45,4 +45,16 @@ class StoreTicketRequest extends FormRequest
             'phone_e164.regex' => 'Номер телефона должен быть в формате E.164 (например, +1234567890)',
         ];
     }
+
+    /**
+     * @return void
+     */
+    protected function prepareForValidation(): void
+    {
+        $files = $this->file('attachments', []);
+
+        if (is_array($this->input('attachments')) && empty($files)) {
+            $this->request->remove('attachments');
+        }
+    }
 }
