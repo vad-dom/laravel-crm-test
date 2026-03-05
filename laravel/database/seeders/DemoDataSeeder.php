@@ -24,6 +24,8 @@ class DemoDataSeeder extends Seeder
 
         $manager->assignRole('manager');
 
-        Ticket::factory()->count(10)->create();
+        if (Ticket::query()->count() === 0) {
+            Ticket::factory()->count(10)->create();
+        }
     }
 }

@@ -46,6 +46,7 @@ fi
 
 echo "🛠️ Выполняю миграции..."
 php artisan migrate --force || true
+php artisan db:seed --force || true
 
 echo "🚀 Запуск Apache..."
 exec apache2-foreground
