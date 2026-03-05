@@ -82,7 +82,7 @@
                                     </td>
 
                                     <td class="py-2 px-4 whitespace-nowrap">
-                                        {{ $ticket->created_at?->format('Y-m-d H:i') }}
+                                        {{ $ticket->created_at?->isoFormat('L HH:mm') }}
                                     </td>
 
                                     <td class="py-2 px-4">

@@ -36,7 +36,16 @@
                                         </span>
                                     </div>
                                 </div>
-                                <x-auth-session-status :status="session('status')" />
+
+                                <x-auth-session-status id="flash-status" :status="session('status')" />
+                                @if (session('status'))
+                                    <script>
+                                        setTimeout(() => {
+                                            const el = document.getElementById('flash-status');
+                                            if (el) el.remove();
+                                        }, 3000);
+                                    </script>
+                                @endif
                             </div>
 
                             <form method="POST"
@@ -76,14 +85,14 @@
                             <div class="space-y-1">
                                 <div class="text-sm text-gray-600">Создана</div>
                                 <div class="text-gray-900">
-                                    {{ $ticket->created_at?->format('Y-m-d H:i') }}
+                                    {{ $ticket->created_at?->isoFormat('L HH:mm') }}
                                 </div>
                             </div>
 
                             <div class="space-y-1">
                                 <div class="text-sm text-gray-600">Дата ответа от менеджера</div>
                                 <div class="text-gray-900">
-                                    {{ $ticket->answered_at?->format('Y-m-d H:i') ?? '—' }}
+                                    {{ $ticket->answered_at?->isoFormat('L HH:mm') ?? '—' }}
                                 </div>
                             </div>
                         </div>

@@ -13,6 +13,9 @@ return [
     'mimes' => 'Допустимые типы файлов: :values',
     'error' => 'Поле :attribute содержит ошибку.',
     'errors' => 'Поле :attribute содержит :count ошибок.',
+    'previous' => '&laquo; Назад',
+    'next' => 'Вперед &raquo;',
+    'showing' => 'Показано :first–:last из :total',
     'summary' => [
         'message' => 'Есть ошибки в форме',
         'errors' => 'и ещё :count ошибок',
