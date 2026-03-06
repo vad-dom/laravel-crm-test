@@ -1,7 +1,9 @@
 <h1>Мини-CRM</h1>
 <p>Сбор и обработка заявок с сайта через виджет</p>
 
+
 <p><b>🛠 Используемые технологии и технические решения: <a href="https://github.com/vad-dom/laravel-crm-test/blob/main/TECHNICAL_NOTES.md">TECHNICAL_NOTES.md</a></b></p>
+
 
 <h2>📂 Структура проекта</h2>
 <pre>
