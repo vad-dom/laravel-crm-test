@@ -5,8 +5,6 @@
 
 <p><b>🛠 Используемые технологии и технические решения: <a href="https://github.com/vad-dom/laravel-crm-test/blob/main/TECHNICAL_NOTES.md">TECHNICAL_NOTES.md</a></b></p>
 
-<br>
-
 <h2>📂 Структура проекта</h2>
 <pre>
   ├── docker/                            # настройки Docker
@@ -70,11 +68,11 @@
     <ul> 
       <li>Соберутся Docker-образы для сервисов приложения</li> 
       <li>Поднимутся контейнеры <code>app</code>, <code>db</code>, <code>phpmyadmin</code> и <code>node</code></li>
-      <li>Создадутся необходимые Docker volumes <code>db_data</code>, <code>node_modules</code>/li>
+      <li>Создадутся необходимые Docker volumes <code>db_data</code>, <code>node_modules</code></li>
       <li><code>.env.example</code> скопируется в <code>.env</code></li>
       <li>Установятся PHP-зависимости через Composer</li> 
       <li>Выполнятся миграции базы данных</li> 
-      <li>Выполнится заполнение базы тестовыми данными (seeders)</li> 
+      <li>Выполнится заполнение базы тестовыми данными (seeders): 1 менеджер, 10 клиентов, 10 заявок</li> 
       <li>Настроятся права доступа на необходимые папки Laravel</li> 
       <li>Запустится Apache внутри контейнера приложения</li> 
       <li>Установятся Node-зависимости <code>npm ci</code> или <code>npm install</code></li> 
