@@ -96,23 +96,37 @@ class Ticket extends Model implements HasMedia
         $phone = trim((string) $request->input('phone', ''));
 
         return $query
-            ->when($statuses !== [], fn (Builder $q) =>
+            ->when(
+                $statuses !== [],
+                fn (Builder $q) =>
                 $q->whereIn('status', $statuses)
             )
-            ->when($email !== '', fn (Builder $q) =>
-                $q->whereHas('customer', fn (Builder $cq) =>
+            ->when(
+                $email !== '',
+                fn (Builder $q) =>
+                $q->whereHas(
+                    'customer',
+                    fn (Builder $cq) =>
                     $cq->where('email', 'like', "$email%")
                 )
             )
-            ->when($phone !== '', fn (Builder $q) =>
-                $q->whereHas('customer', fn (Builder $cq) =>
+            ->when(
+                $phone !== '',
+                fn (Builder $q) =>
+                $q->whereHas(
+                    'customer',
+                    fn (Builder $cq) =>
                     $cq->where('phone_e164', 'like', "%$phone%")
                 )
             )
-            ->when($request->date('from'), fn (Builder $q, $from) =>
+            ->when(
+                $request->date('from'),
+                fn (Builder $q, $from) =>
                 $q->whereDate('created_at', '>=', $from)
             )
-            ->when($request->date('to'), fn (Builder $q, $to) =>
+            ->when(
+                $request->date('to'),
+                fn (Builder $q, $to) =>
                 $q->whereDate('created_at', '<=', $to)
             );
     }
