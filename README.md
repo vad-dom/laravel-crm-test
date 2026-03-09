@@ -1,10 +1,6 @@
 <h1>Мини-CRM</h1>
 <p>Сбор и обработка заявок с сайта через виджет</p>
 
-<br>
-
-<p><b>🛠 Используемые технологии и технические решения: <a href="https://github.com/vad-dom/laravel-crm-test/blob/main/TECHNICAL_NOTES.md">TECHNICAL_NOTES.md</a></b></p>
-
 <h2>📂 Структура проекта</h2>
 <pre>
   ├── docker/                            # настройки Docker
@@ -50,6 +46,9 @@
   └── README.md
 </pre>
 
+<h2>🛠 Используемые технологии и технические решения</h2>
+<p><a href="https://github.com/vad-dom/laravel-crm-test/blob/main/TECHNICAL_NOTES.md">TECHNICAL_NOTES.md</a></p>
+
 <br>
 <h2>🚀 Как запустить проект:</h2>
 <ol>
@@ -92,7 +91,7 @@
   </li>
 </ol>
 
-<h2>API</h2>
+<h2>📘 Документация API</h2>
 
 <p>Документация API доступна в Swagger (есть ссылка с главной страницы):</p>
 
@@ -113,8 +112,8 @@
 
 <p>Seeder создаёт 10 тестовых заявок со случайными данными</p>
 
+<p>Каждая заявка содержит:</p>
 <ul>
-  Каждая заявка содержит:
   <li>клиента (Customer)</li>
   <li>тему</li>
   <li>текст сообщения</li>
