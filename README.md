@@ -1,6 +1,7 @@
 <h1>Мини-CRM</h1>
 <p>Сбор и обработка заявок с сайта через виджет</p>
 
+<br>
 <h2>📂 Структура проекта</h2>
 <pre>
   ├── docker/                            # настройки Docker
@@ -46,11 +47,12 @@
   └── README.md
 </pre>
 
+<br>
 <h2>🛠 Используемые технологии и технические решения</h2>
 <p><a href="https://github.com/vad-dom/laravel-crm-test/blob/main/TECHNICAL_NOTES.md">TECHNICAL_NOTES.md</a></p>
 
 <br>
-<h2>🚀 Как запустить проект:</h2>
+<h2>🚀 Как запустить проект</h2>
 <ol>
   <li>
     <strong>Клонировать репозиторий laravel-crm-test:</strong>
@@ -91,12 +93,14 @@
   </li>
 </ol>
 
+<br>
 <h2>📘 Документация API</h2>
 
 <p>Документация API доступна в Swagger (есть ссылка с главной страницы):</p>
 
 <code>http://localhost:8080/docs</code>
 
+<br>
 <h2>📋 Тестовые данные</h2>
 
 <p>После запуска проекта в базе создаются следующие данные:</p>
@@ -120,7 +124,8 @@
   <li>статус `new`</li>
 </ul>
 
-<h2>✅ Как запустить API-тесты:</h2>
+<br>
+<h2>✅ Как запустить API-тесты</h2>
 <p>(внутри контейнера приложения)</p>
   <pre><code>docker compose exec app php artisan test --filter TicketApiTest</code></pre> 
   <p>Результаты будут выведены в терминале</p>
