@@ -132,5 +132,5 @@
 <h2>⚠️ Важно:</h2>
 <p>Отдельная база данных для тестов не создавалась, поэтому при запуске тестов существующие данные удалятся.</p>
 <p>Заново создать тестовые данные можно так:</p>
-<code>docker compose exec app php artisan migrate:fresh --seed</code>
-<p>Это выполнит все миграции и seeders.</p>
+  <pre><code>docker compose exec app php artisan migrate:fresh --seed</code></pre>
+  <p>Это выполнит все миграции и seeders.</p>
