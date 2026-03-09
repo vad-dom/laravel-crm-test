@@ -96,7 +96,7 @@
 
 <p>Документация API доступна в Swagger (есть ссылка с главной страницы):</p>
 
-<code>http://localhost:8080/api/documentation</code>
+<code>http://localhost:8080/docs</code>
 
 <h2>📋 Тестовые данные</h2>
 
