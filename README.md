@@ -43,11 +43,11 @@
   │   ├── routes/                        # api, web
   │   ├── tests/
   │       ├── Feature/                   # TicketApiTest
-  ├── .env
-  ├── .env.example
-├── docker-compose.yml
-├── TECHNICAL_NOTES.md
-└── README.md
+  │   ├── .env
+  │   ├── .env.example
+  ├── docker-compose.yml
+  ├── TECHNICAL_NOTES.md
+  └── README.md
 </pre>
 
 <br>
@@ -91,6 +91,35 @@
     <pre><code>http://localhost:8081</code></pre>
   </li>
 </ol>
+
+<h2>API</h2>
+
+<p>Документация API доступна в Swagger (есть ссылка с главной страницы):</p>
+
+<code>http://localhost:8080/api/documentation</code>
+
+<h2>📋 Тестовые данные</h2>
+
+<p>После запуска проекта в базе создаются следующие данные:</p>
+
+<h3>Менеджер</h3>
+
+<code>Email: manager@example.com</code>
+<code>Пароль: password</code>
+
+<p>Этот пользователь имеет роль `manager` и может войти в админ-панель</p>
+
+<h3>Тестовые заявки</h3>
+
+<p>Seeder создаёт 10 тестовых заявок со случайными данными</p>
+
+<ul>
+  Каждая заявка содержит:
+  <li>клиента (Customer)</li>
+  <li>тему</li>
+  <li>текст сообщения</li>
+  <li>статус `new`</li>
+</ul>
 
 <h2>✅ Как запустить API-тесты:</h2>
 <p>(внутри контейнера приложения)</p>
