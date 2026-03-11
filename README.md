@@ -9,16 +9,20 @@
   │   ├── app/                            
   │       ├── Enums/                     # enum TicketStatus
   │       ├── Http/                       
-  │           ├── Controllers/             
-  │               ├── Admins/              
-  │               ├── Api/                 
-  │           ├── Requests/                
-  │               ├── Admins/              
-  │               ├── Api/                 
-  │           ├── Resources/               
-  │       ├── Models/                      
+  │           ├── Controllers/           # ProfileController (Breeze Blade)
+  │               ├── Admin/             # AdminTicketController, TicketStatusController
+  │               ├── Api/               # TicketController, TicketStatisticsController
+  │               ├── Auth/              # контроллеры Breeze Blade   
+  │           ├── Requests/              # ProfileUpdateRequest (Breeze Blade)  
+  │               ├── Admin/             # UpdateTicketStatusRequest
+  │               ├── Api/               # StoreTicketRequest
+  │               ├── Auth/              # LoginRequest (Breeze Blade)     
+  │           ├── Resources/             # TicketResource, TicketStatisticsResource  
+  │       ├── Models/                    # Customer, User, Ticket  
   │       ├── Services/                  # Ticket services    
   │           ├── Admin/                 # TicketStatusService   
+  │       ├── View/                      
+  │           ├── Components/            # AppLayout, GuestLayout   
   │   ├── database/                     
   │       ├── factories/                 # Customer, User, Ticket    
   │       ├── migrations/             
@@ -32,12 +36,15 @@
   │       ├── views/                     # домашняя страница и виджет
   │           ├── admin/          
   │               ├── tickets/           # список заявок и детальная информация
-  │           ├── layouts/               # iframe
+  │           ├── auth/                  # views Breeze Blade
+  │           ├── components/            # компоненты Breeze Blade
+  │           ├── layouts/               # iframe, Breeze Blade layouts
+  │           ├── profile/               # profile Breeze Blade
   │           ├── vendor/                
   │               ├── media-library/     # опубликовано
   │               ├── pagination/        # опубликовано
   │           ├── layouts/               # iframe
-  │   ├── routes/                        # api, web
+  │   ├── routes/                        # api, web, auth (Breeze Blade)
   │   ├── tests/
   │       ├── Feature/                   # TicketApiTest
   │   ├── .env
