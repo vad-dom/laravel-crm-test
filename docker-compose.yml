@@ -8,6 +8,7 @@ services:
       - "8080:80"
     volumes:
       - ./laravel:/var/www/html
+      - vendor_data:/var/www/html/vendor
     environment:
       DB_CONNECTION: mysql
       DB_HOST: db
@@ -71,3 +72,4 @@ networks:
 volumes:
   db_data:
   node_modules:
+  vendor_data:

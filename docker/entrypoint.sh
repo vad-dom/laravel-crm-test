@@ -24,8 +24,12 @@ if [ ! -f .env ] && [ -f .env.example ]; then
   cp .env.example .env
 fi
 
-echo "📦 Устанавливаю зависимости Composer..."
-composer install --no-interaction
+if [ ! -f vendor/autoload.php ]; then
+  echo "📦 Устанавливаю зависимости Composer..."
+  composer install --no-interaction
+else
+  echo "✅ Composer зависимости уже установлены, пропускаю"
+fi
 
 # APP_KEY (только если пустой/отсутствует)
 if ! grep -q "^APP_KEY=base64:" .env 2>/dev/null; then
