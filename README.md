@@ -22,7 +22,7 @@
   │       ├── Services/                  # Ticket services    
   │           ├── Admin/                 # TicketStatusService   
   │       ├── View/                      
-  │           ├── Components/            # AppLayout, GuestLayout   
+  │           ├── Components/            # AppLayout, GuestLayout (Breeze Blade)
   │   ├── database/                     
   │       ├── factories/                 # Customer, User, Ticket    
   │       ├── migrations/             
