@@ -1,11 +1,9 @@
 <h1>Мини-CRM</h1>
 <p>Сбор и обработка заявок с сайта через виджет</p>
 
-<h2>Текст задания</h2>
-<p><a href="https://github.com/vad-dom/laravel-crm-test/blob/main/TASK.md">TASK.md</a></p>
+<p>Текст задания: <a href="https://github.com/vad-dom/laravel-crm-test/blob/main/TASK.md">TASK.md</a></p>
 
-<h2>🛠 Используемые технологии и технические решения</h2>
-<p><a href="https://github.com/vad-dom/laravel-crm-test/blob/main/TECHNICAL_NOTES.md">TECHNICAL_NOTES.md</a></p>
+<p>Используемые технологии и технические решения: <a href="https://github.com/vad-dom/laravel-crm-test/blob/main/TECHNICAL_NOTES.md">TECHNICAL_NOTES.md</a></p>
 
 <br>
 <h2>📂 Структура проекта</h2>
