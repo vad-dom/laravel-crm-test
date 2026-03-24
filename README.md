@@ -53,9 +53,10 @@
   │       ├── Feature/                   # TicketApiTest
   │   ├── .env
   │   ├── .env.example
-  ├── docker-compose.yml
+  ├── README.md
+  ├── TASK.md
   ├── TECHNICAL_NOTES.md
-  └── README.md
+  └── docker-compose.yml
 </pre>
 
 <br>
