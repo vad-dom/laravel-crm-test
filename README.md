@@ -2,6 +2,14 @@
 <p>Сбор и обработка заявок с сайта через виджет</p>
 
 <br>
+<h2>Текст задания</h2>
+<p><a href="https://github.com/vad-dom/laravel-crm-test/blob/main/TASK.md">TASK.md</a></p>
+
+<br>
+<h2>🛠 Используемые технологии и технические решения</h2>
+<p><a href="https://github.com/vad-dom/laravel-crm-test/blob/main/TECHNICAL_NOTES.md">TECHNICAL_NOTES.md</a></p>
+
+<br>
 <h2>📂 Структура проекта</h2>
 <pre>
   ├── docker/                            # настройки Docker
@@ -53,10 +61,6 @@
   ├── TECHNICAL_NOTES.md
   └── README.md
 </pre>
-
-<br>
-<h2>🛠 Используемые технологии и технические решения</h2>
-<p><a href="https://github.com/vad-dom/laravel-crm-test/blob/main/TECHNICAL_NOTES.md">TECHNICAL_NOTES.md</a></p>
 
 <br>
 <h2>🚀 Как запустить проект</h2>
