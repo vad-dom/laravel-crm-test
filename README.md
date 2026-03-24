@@ -1,5 +1,5 @@
 <h1>Мини-CRM</h1>
-<p>Сбор и обработка заявок с сайта через виджет</p>
+<p>Сбор и обработка заявок с сайта через виджет.</p>
 
 <p>Текст задания: <a href="https://github.com/vad-dom/laravel-crm-test/blob/main/TASK.md">TASK.md</a></p>
 
