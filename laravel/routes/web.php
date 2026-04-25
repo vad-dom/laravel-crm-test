@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminTicketController;
-use App\Http\Controllers\Admin\TicketStatusController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,9 +24,6 @@ Route::middleware(['auth', 'role:manager'])
     ->group(function () {
         Route::get('/tickets', [AdminTicketController::class, 'index'])->name('tickets.index');
         Route::get('/tickets/{ticket}', [AdminTicketController::class, 'show'])->name('tickets.show');
-
-        Route::post('/tickets/{ticket}/status', TicketStatusController::class)
-            ->name('tickets.status');
         Route::patch('/tickets/{ticket}/status', [AdminTicketController::class, 'updateStatus'])
             ->name('tickets.status');
     });

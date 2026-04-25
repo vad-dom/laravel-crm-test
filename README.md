@@ -14,7 +14,7 @@
   │       ├── Enums/                     # enum TicketStatus
   │       ├── Http/                       
   │           ├── Controllers/           # ProfileController (Breeze Blade)
-  │               ├── Admin/             # AdminTicketController, TicketStatusController
+  │               ├── Admin/             # AdminTicketController
   │               ├── Api/               # TicketController, TicketStatisticsController
   │               ├── Auth/              # контроллеры Breeze Blade   
   │           ├── Requests/              # ProfileUpdateRequest (Breeze Blade)  
