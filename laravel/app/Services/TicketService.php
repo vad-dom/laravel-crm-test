@@ -6,6 +6,8 @@ use App\DTO\Ticket\CreateTicketData;
 use App\Enums\TicketStatus;
 use App\Models\Customer;
 use App\Models\Ticket;
+use App\Repositories\Interfaces\CustomerRepositoryInterface;
+use App\Repositories\Interfaces\TicketRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
@@ -13,8 +15,11 @@ readonly class TicketService
 {
     private const DAILY_LIMIT_MESSAGE = 'Можно отправлять не более одной заявки в сутки';
 
-    public function __construct(private TicketMediaService $mediaService)
-    {
+    public function __construct(
+        private TicketMediaService $mediaService,
+        private CustomerRepositoryInterface $customers,
+        private TicketRepositoryInterface $tickets,
+    ) {
     }
 
     /**
@@ -32,12 +37,12 @@ readonly class TicketService
 
             $this->ensureDailyLimit($customer);
 
-            $ticket = Ticket::query()->create([
-                'customer_id' => $customer->id,
-                'subject' => $data->subject,
-                'message' => $data->message,
-                'status' => TicketStatus::New,
-            ]);
+            $ticket = $this->tickets->create(
+                customerId: $customer->id,
+                subject: $data->subject,
+                message: $data->message,
+                status: TicketStatus::New,
+            );
 
             $files = $data->attachments;
             if (!empty($files)) {
@@ -57,7 +62,7 @@ readonly class TicketService
      */
     private function resolveCustomer(string $name, string $email, string $phoneE164): Customer
     {
-        $byEmail = Customer::query()->where('email', $email)->first();
+        $byEmail = $this->customers->findByEmail($email);
         if ($byEmail !== null) {
             if ($byEmail->phone_e164 !== $phoneE164) {
                 throw ValidationException::withMessages([
@@ -73,7 +78,7 @@ readonly class TicketService
             return $byEmail;
         }
 
-        $byPhone = Customer::query()->where('phone_e164', $phoneE164)->first();
+        $byPhone = $this->customers->findByPhone($phoneE164);
         if ($byPhone !== null) {
             if ($byPhone->email !== $email) {
                 throw ValidationException::withMessages([
@@ -89,11 +94,11 @@ readonly class TicketService
             return $byPhone;
         }
 
-        return Customer::query()->create([
-            'name' => $name,
-            'email' => $email,
-            'phone_e164' => $phoneE164,
-        ]);
+        return $this->customers->create(
+            name: $name,
+            email: $email,
+            phoneE164: $phoneE164,
+        );
     }
 
     /**
@@ -103,10 +108,7 @@ readonly class TicketService
      */
     private function ensureDailyLimit(Customer $customer): void
     {
-        $sentToday = Ticket::query()
-            ->where('customer_id', $customer->id)
-            ->where('created_at', '>=', now()->startOfDay())
-            ->exists();
+        $sentToday = $this->tickets->sentToday($customer->id);
 
         if ($sentToday) {
             throw ValidationException::withMessages([
