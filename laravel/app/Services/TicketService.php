@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\DTO\Ticket\CreateTicketData;
 use App\Enums\TicketStatus;
 use App\Models\Customer;
 use App\Models\Ticket;
@@ -17,28 +18,28 @@ readonly class TicketService
     }
 
     /**
-     * @param array $data
+     * @param CreateTicketData $data
      * @return Ticket
      */
-    public function create(array $data): Ticket
+    public function create(CreateTicketData $data): Ticket
     {
         return DB::transaction(function () use ($data): Ticket {
             $customer = $this->resolveCustomer(
-                name: $data['name'],
-                email: $data['email'],
-                phoneE164: $data['phone_e164'],
+                name: $data->name,
+                email: $data->email,
+                phoneE164: $data->phoneE164,
             );
 
             $this->ensureDailyLimit($customer);
 
             $ticket = Ticket::query()->create([
                 'customer_id' => $customer->id,
-                'subject' => $data['subject'],
-                'message' => $data['message'],
+                'subject' => $data->subject,
+                'message' => $data->message,
                 'status' => TicketStatus::New,
             ]);
 
-            $files = $data['attachments'] ?? [];
+            $files = $data->attachments;
             if (!empty($files)) {
                 $this->mediaService->attach($ticket, $files);
             }

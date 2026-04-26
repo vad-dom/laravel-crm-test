@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\DTO\Ticket\CreateTicketData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\StoreTicketRequest;
 use App\Http\Resources\TicketResource;
@@ -19,8 +20,8 @@ class TicketController extends Controller
      */
     public function store(StoreTicketRequest $request): TicketResource
     {
-        $data = $request->validated();
-        $ticket = $this->service->create($data);
+        $dto = CreateTicketData::fromArray($request->validated());
+        $ticket = $this->service->create($dto);
         return new TicketResource($ticket);
     }
 }
