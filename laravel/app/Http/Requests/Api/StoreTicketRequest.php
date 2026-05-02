@@ -22,7 +22,7 @@ class StoreTicketRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email:rfc', 'max:255'],
-            'phone_e164' => ['required', 'regex:/^\+[1-9]\d{6,14}$/'],
+            'phone_e164' => ['required', $this->e164PhoneRule()],
 
             'subject' => ['required', 'string', 'max:255'],
             'message' => ['required', 'string'],
@@ -56,5 +56,13 @@ class StoreTicketRequest extends FormRequest
         if (is_array($this->input('attachments')) && empty($files)) {
             $this->request->remove('attachments');
         }
+    }
+
+    /**
+     * @return string
+     */
+    private function e164PhoneRule(): string
+    {
+        return 'regex:/^\+[1-9]\d{6,14}$/';
     }
 }
